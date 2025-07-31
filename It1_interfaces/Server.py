@@ -97,7 +97,7 @@ async def handle_client(websocket):
 
 async def main():
     port = int(os.environ.get("PORT", 8765))
-    async with websockets.serve(handle_client, "0.0.0.0", 8765):
+    async with websockets.serve(handle_client, "0.0.0.0", port):
         print(f"שרת רץ על ws://0.0.0.0:{port}")
         await asyncio.Future()
 
