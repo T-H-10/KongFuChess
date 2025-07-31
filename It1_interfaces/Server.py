@@ -1,6 +1,7 @@
 import asyncio
 import websockets
 import json
+import os
 
 clients = {}  # websocket -> color ("white" או "black")
 board_state = {}  # ייצוג פשוט של הלוח (לדוגמה)
@@ -95,8 +96,9 @@ async def handle_client(websocket):
             del clients[websocket]
 
 async def main():
+    port = int(os.environ.get("PORT", 8765))
     async with websockets.serve(handle_client, "0.0.0.0", 8765):
-        print("שרת רץ על ws://0.0.0.0:8765")
+        print(f"שרת רץ על ws://0.0.0.0:{port}")
         await asyncio.Future()
 
 if __name__ == "__main__":
